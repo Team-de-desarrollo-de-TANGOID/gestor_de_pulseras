@@ -1,0 +1,131 @@
+/* Configuración Base */
+.root {
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-background-color: #F5F7FA;
+}
+
+/* Contenedores principales */
+.main-container {
+    -fx-padding: 25;
+}
+
+/* Tarjetas (Cards) */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: #E6E9ED;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 15, 0, 0, 5);
+}
+
+/* Etiquetas y Títulos */
+.header-label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #244570;
+    -fx-border-color: #244570;
+    -fx-border-width: 0 0 2 0;
+    -fx-padding: 0 0 5 0;
+}
+
+.small-label {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #788796;
+    -fx-padding: 5 0 2 0;
+}
+
+/* Entradas de Texto y Combos */
+.text-field, .combo-box {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D2DCE6;
+    -fx-border-radius: 5;
+    -fx-padding: 7 10;
+    -fx-font-size: 13px;
+    -fx-text-fill: #333333;
+}
+
+.text-field:focused, .combo-box:focused {
+    -fx-border-color: #244570;
+    -fx-border-width: 1.5;
+    -fx-background-color: #FBFCFF;
+}
+
+/* Botones */
+.btn-primary {
+    -fx-background-color: #244570;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 12 25;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #1a3352;
+}
+
+.btn-secondary {
+    -fx-background-color: transparent;
+    -fx-border-color: #244570;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 6;
+    -fx-text-fill: #244570;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #F0F4F8;
+}
+
+/* Diseño de Pestañas (TabPane) */
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #244570;
+}
+
+.tab {
+    -fx-background-color: #244570;
+    -fx-padding: 10 25 10 25;
+    -fx-background-insets: 0;
+}
+
+.tab:selected {
+    -fx-background-color: #F5F7FA;
+}
+
+.tab .tab-label {
+    -fx-text-fill: #A0B0C5;
+    -fx-font-size: 13px;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: #244570;
+    -fx-font-weight: bold;
+}
+
+/* Vista Previa */
+.preview-box {
+    -fx-background-color: #E6EBF0;
+    -fx-border-color: #D2DCE6;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 15;
+}
+
+/* Pestaña Info y Enlaces */
+.hyperlink {
+    -fx-text-fill: #244570;
+    -fx-underline: true;
+}
+
+.hyperlink:hover {
+    -fx-text-fill: #1a3352;
+}
+
+.separator {
+    -fx-padding: 10 0;
+}

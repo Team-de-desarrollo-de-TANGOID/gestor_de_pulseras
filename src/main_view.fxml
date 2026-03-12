@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.image.*?>
+<?import java.net.URL?>
+
+<VBox prefWidth="850.0" prefHeight="750.0" xmlns:fx="http://javafx.com/fxml" fx:controller="src.UiController">
+    <stylesheets>
+        <URL value="@style.css" />
+    </stylesheets>
+
+    <TabPane VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
+        <Tab text="OPERACIÓN" fx:id="tabOperacion">
+            <VBox spacing="15" style="-fx-padding: 20;"> 
+                <VBox spacing="15" styleClass="card" style="-fx-padding: 20;">
+                    <Label text="LECTURA DE DATOS" styleClass="header-label" />
+                    <TextField fx:id="txtLector" onAction="#handleLectorAction" promptText="Scanee el DNI..." style="-fx-font-size: 14;" />
+                    
+                    <HBox spacing="15">
+                        <VBox HBox.hgrow="ALWAYS"><Label text="APELLIDO" styleClass="small-label" /><TextField fx:id="txtApe" /></VBox>
+                        <VBox HBox.hgrow="ALWAYS"><Label text="NOMBRE" styleClass="small-label" /><TextField fx:id="txtNom" /></VBox>
+                    </HBox>
+
+                    <HBox spacing="15">
+                        <VBox><Label text="DNI" styleClass="small-label" /><TextField fx:id="txtDni" prefWidth="140" /></VBox>
+                        <VBox><Label text="SEXO" styleClass="small-label" /><ComboBox fx:id="comboSexo" prefWidth="90" /></VBox>
+                        <VBox><Label text="EDAD" styleClass="small-label" /><TextField fx:id="txtEdad" prefWidth="80" /></VBox>
+                        <VBox HBox.hgrow="ALWAYS"><Label text="NIVEL DE RIESGO" styleClass="small-label" /><ComboBox fx:id="comboRiesgo" maxWidth="Infinity" /></VBox>
+                    </HBox>
+                    
+                    <HBox spacing="15" alignment="BOTTOM_LEFT">
+                        <VBox><Label text="TAMAÑO" styleClass="small-label" /><ComboBox fx:id="comboMedida" prefWidth="120" /></VBox>
+                        <VBox HBox.hgrow="ALWAYS"><Label text="MODO QR" styleClass="small-label" /><ComboBox fx:id="comboTipoQr" maxWidth="Infinity" /></VBox>
+                        <Button text="IMPRIMIR PULSERA" onAction="#handleImprimir" styleClass="btn-primary" prefWidth="250" prefHeight="45" />
+                    </HBox>
+                </VBox>
+
+                <VBox spacing="10">
+                    <Label text="VISTA PREVIA DE PULSERA" styleClass="small-label" style="-fx-text-fill: #78828C;" />
+                    <StackPane style="-fx-background-color: #E9EEF3; -fx-padding: 15; -fx-background-radius: 10; -fx-border-color: #D6DBE0; -fx-border-radius: 10;">
+                        <Canvas fx:id="canvasPreview" width="700.0" height="120.0" />
+                    </StackPane>
+                </VBox>
+            </VBox>
+        </Tab>
+
+        <Tab text="CONFIGURACIÓN">
+            <VBox spacing="25" style="-fx-padding: 30;">
+                <VBox spacing="20" styleClass="card" style="-fx-padding: 25;">
+                    <Label text="AJUSTES DE HARDWARE" styleClass="header-label" />
+                    
+                    <VBox spacing="10">
+                        <Label text="Seleccione la Impresora:" styleClass="small-label" />
+                        <ComboBox fx:id="comboPrinters" maxWidth="Infinity" promptText="Buscando impresoras..." />
+                    </VBox>
+                    
+                    <Separator />
+                    
+                    <VBox spacing="10">
+                        <Label text="Ruta de archivo de ingresos (.csv):" styleClass="small-label" />
+                        <HBox spacing="10">
+                            <TextField fx:id="txtRutaCsv" editable="false" HBox.hgrow="ALWAYS" promptText="Seleccione donde guardar los ingresos..." />
+                            <Button text="Seleccionar..." onAction="#handleSeleccionarRutaCsv" />
+                        </HBox>
+                    </VBox>
+                    
+                    <Separator />
+                    <Label text="Las preferencias se guardan automáticamente al realizar cambios." 
+                        style="-fx-text-fill: #78828C; -fx-font-size: 11px; -fx-font-style: italic;" />
+                </VBox>
+            </VBox>
+        </Tab>
+
+        <Tab text="INFO">
+            <VBox spacing="0" style="-fx-background-color: white;">
+                <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-padding: 35; -fx-background-color: #FCFDFF; -fx-border-color: #E6EBF0; -fx-border-width: 0 0 1 0;">
+                    <ImageView fitHeight="60.0" preserveRatio="true" smooth="true">
+                        <image>
+                            <Image url="/src/icono.png" />
+                        </image>
+                    </ImageView>
+
+                    <VBox alignment="CENTER_LEFT">
+                        <Label text="TANGOID - Gestión de Pulseras" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #244570;" />
+                        <Label text="Sistema de Identificación Hospitalaria" style="-fx-text-fill: #78828C;" />
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="30" style="-fx-padding: 35;">
+                    <VBox spacing="12" HBox.hgrow="ALWAYS" styleClass="card" style="-fx-padding: 25;">
+                        <Label text="SISTEMA" styleClass="header-label" />
+                        
+                        <Label fx:id="lblEstadoLicencia" text="Verificando licencia..." style="-fx-font-weight: bold;" />
+                        <Label fx:id="licenseInfo" text="" style="-fx-font-weight: bold;" />
+                        <Button fx:id="btnActivarProducto" text="ACTIVAR PRODUCTO" onAction="#handleActivarLicencia" 
+                                styleClass="btn-primary" />
+                    </VBox>
+                    
+                    <VBox spacing="12" HBox.hgrow="ALWAYS" styleClass="card" style="-fx-padding: 25;">
+                        <Label text="SOPORTE" styleClass="header-label" />
+                        <Label text="Para asistencia técnica contacte a:" styleClass="small-label" />
+                        <Hyperlink text="www.tangoid.com.ar" onAction="#handleOpenWeb" />
+                    </VBox>
+                </HBox>
+            </VBox>
+        </Tab>
+    </TabPane>
+
+    <HBox style="-fx-background-color: #f4f4f4; -fx-padding: 10 20; -fx-border-color: #ddd; -fx-border-width: 1 0 0 0;">
+        <Label fx:id="lblEstado" text="Listo." />
+    </HBox>
+</VBox>
