@@ -9,7 +9,7 @@ import java.util.Map;
 public class DniParser {
     public static Map<String, String> parse(String line) {
         Map<String, String> datos = new HashMap<>();
-        String[] partes = line.split("@");
+        String[] partes = line.split("\"");
 
         if (partes.length >= 8) {
             datos.put("apellido", partes[1].toUpperCase().trim());
@@ -17,7 +17,7 @@ public class DniParser {
             datos.put("sexo", partes[3].toUpperCase().trim());
             datos.put("dni", partes[4].trim());
             
-            String fechaNacStr = partes[6].trim(); // Formato esperado DD/MM/AAAA
+            String fechaNacStr = partes[6].trim(); // Formato DD-MM-AAAA o DD/MM/AAAA
             datos.put("nacimiento", fechaNacStr);
             datos.put("edad", calcularEdadExacta(fechaNacStr));
         } else {
@@ -30,8 +30,9 @@ public class DniParser {
 
     private static String calcularEdadExacta(String fechaStr) {
         try {
-            // El scanner suele entregar DD/MM/AAAA
-            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            DateTimeFormatter fmt = fechaStr.contains("-")
+                    ? DateTimeFormatter.ofPattern("dd-MM-yyyy")
+                    : DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate fechaNac = LocalDate.parse(fechaStr, fmt);
             LocalDate ahora = LocalDate.now();
             
